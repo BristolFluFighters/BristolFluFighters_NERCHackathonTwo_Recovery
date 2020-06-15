@@ -22,4 +22,7 @@ Multivariate signals and their interrelationships can be used to highlight the p
 
 ## Basic Git Etiquette
 * Do all your work on your own branch
-* Do not make a pull-request without requesting a reviewer
+* Code reviews
+	+ Anyone can ask anyone else for a code review at any time.
+	+ If you have no conflicts when completing a pull-request then you do not need to assign a reviewer to the pull-request.
+	+ If you have a conflict then at the very least you should invite the author of the conflicted file to review the merge process.
