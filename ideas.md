@@ -14,8 +14,16 @@
 * **Q** - What are the "net-zero targets"?
 * **A** - In June 2019, the [UK Parliment passed legislation](https://www.instituteforgovernment.org.uk/explainers/net-zero-target) requiring the government to reduce the UK's net emissions of greenhouse gases by 100% relative to 1990 levels by 2050.
 
+* **Q** - What lockdown and recovery methods have been imposed and when?
+* **A** - There is a [Wikipedia page](https://en.wikipedia.org/wiki/Timeline_of_the_COVID-19_pandemic_in_the_United_Kingdom) dedicated to the Covid timeline in the U.K. 
+* **Q** - How have the lockdown measurements affected the GHG emissions in the UK (or any country)?
+* **A** - We need to pick out the key policy decisions from the previous reference and correlate that with any observed changes in the levels of GHG emissions. Splitting the GHG emissions by sector (industry, transport, aviation, etc.) will allow us to dig deeper into the details.
+
+
 ## Tasks
 
+- [ ] Decide which greenhouse gases we want to focus our study on.
 - [ ] Obtain data for UK greenhouse gas emissions, [historical](https://data.gov.uk/dataset/9568363e-57e5-4c33-9e00-31dc528fcc5a/final-uk-greenhouse-gas-emissions-national-statistics) and present.
 - [ ] If no up to date data for UK greenhouse gas emissions then derive UK greenhouse gas emissions from other available data sets. The Sentinel satellite data could be a good resource for this.
 - [ ] Fit a model to the model to make predictions about the trajectory before and after Covid-19.
+- [ ] Set up a latex doc to put the results together
