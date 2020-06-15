@@ -6,6 +6,44 @@ homogeneous. It can be expected that the impact of lockdown will not be homogene
 The goal is to get a broad idea of what the main types of goals
 are and how they can be reduced to reasonable metrics.
 
+## Summary 
+
+### Contents of interest
+
++ *Reference scenarios*: This report provides a good source of information 
+with quite a few external references to other official international organisations 
+[reports and data sets on projected climate change](#Sources).
++ *Paris agreement measures*: Describes the properties of the actions of Paris 
+measures. This lets us come up with plausible scenarios for how lockdown will affect these ([section: Targets](#Targets)).
++ *Aggregate impact of measures*: Baseline scenario for the impact of those measures ([section: Impacts](#Impacts)).
+
+### Questions raised
+
++ *What GHG emissions should we consider?* Prioritise CO2, CH4 and NO2 data.
++ *Short term impact on these gases?*
++ *What sectors should we target any analysis on?*
++ *What could be the long term impacts of lockdowns on implementation of measures?*
+
+### Implications for this Hackathon
+
+We cannot be comprehensive, so I think we need to recognise that now,
+go specific in some aspects, but with a framework that is extensible.
+Think about how other sources of data or models can be leveraged in our assessment.
+
+Concretely :
+
++ pick: 
+  + one gas, 
+  + one sector
+  + One country?
++ Get data for:
+  + how it was impacted by lockdown
+  + previously expected growth trends
+  + planned ecological transitions (if any)
+  + Expected recovery after lockdown (if available)
+  + ...
++ Reassess the expected emissions for that sector.
+
 ## Sources
 
 + [Aggregate effect of the intended nationally determined contributions: an update](https://unfccc.int/resource/docs/2016/cop22/eng/02.pdf)
@@ -28,8 +66,7 @@ are and how they can be reduced to reasonable metrics.
 + MIC: middle income country
 + GWP: global warming potential
 + LULUCF: land use, land-use change and forestry
-+ AR4 : Fourth Assessment Report of the Intergovernmental Panel on Climate
-Change
++ AR4 : Fourth Assessment Report of the Intergovernmental Panel on Climate Change
 + IPCC: Intergovernmental Panel on Climate Change
 
 ## Exclusions from this report
@@ -165,6 +202,8 @@ Note: In parenthesis are the (20 to 80%) confidence intervals.
 
 To sum up:
 ### "much greater emission reduction efforts than those associated with the INDCs will be required in the period after 2025 and 2030 to hold the temperature rise below 2 °C above pre-industrial levels"
+
+![Paris agreement INDCs aggregate impact compared to other reference scenarios](img/paris-agreement-scenarios.png)
 
 ## Methods
 
