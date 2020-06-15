@@ -11,6 +11,11 @@ are and how they can be reduced to reasonable metrics.
 [Aggregate effect of the intended nationally determined contributions: an update](https://unfccc.int/resource/docs/2016/cop22/eng/02.pdf)
 [Synthesis report on the aggregate effect of the intended nationally determined contributions](https://unfccc.int/resource/docs/2015/cop21/eng/07.pdf)
 
+### Other
+
+[AR5](https://ar5-syr.ipcc.ch/ipcc/ipcc/resources/pdf/IPCC_SynthesisReport.pdf)
+
+
 ## Acronyms
 
 + INDC: intended nationally determined contributions
@@ -21,11 +26,13 @@ are and how they can be reduced to reasonable metrics.
 + MIC: middle income country
 + GWP: global warming potential
 + LULUCF: land use, land-use change and forestry
++ AR4 : Fourth Assessment Report of the Intergovernmental Panel on Climate
+Change
 
 ## Exclusions from this report
 
-+ Air traffic : [](http://www.imo.org/en/OurWork/Environment/PollutionPrevention/AirPollution/Pages/Greenhouse-Gas-Studies-2014.aspx)
-+ MAritime transport : [](http://www.imo.org/en/OurWork/Environment/PollutionPrevention/AirPollution/Pages/Greenhouse-Gas-Studies-2014.aspx)
++ [Air traffic](http://www.imo.org/en/OurWork/Environment/PollutionPrevention/AirPollution/Pages/Greenhouse-Gas-Studies-2014.aspx)
++ [MAritime transport](http://www.imo.org/en/OurWork/Environment/PollutionPrevention/AirPollution/Pages/Greenhouse-Gas-Studies-2014.aspx)
 
 
 ## Targets
@@ -119,3 +126,40 @@ need for enhanced international support for the implementation of their INDCs"
 + Very significant risk of agreement breakdown as parties expressly look at each other
 and may start to play the 0 sum game. Quantify risk? Establish scenarios?
 
+
+## Impacts
+
+The report quantifies the expected impacts of all these measures
+
+Note: In parenthesis are the (20 to 80%) confidence intervals.
+
++ aggregate global emission level (global emissions on that year): 
+  + 2025 : 55.0 (51.4 to 57.3) Gt CO2 eq
+  + 2030 : 56.2 (52.0 to 59.3) Gt CO2 eq
++ Global cumulative CO2 emissions after 2011:
+  + 2025: 533.1 (509.6 to 557.2) Gt CO2 eq
+  + 2030:  738.8 (703.6 to 770.9) Gt CO2 eq
++ Relative global aggregate emission levels (compared to a year):
+  + 1990: +40 (+33–+47) per cent in 2025 and +44 (+34–+53) per cent in 2030
+  + 2000: 35 (28–41) per cent in 2025 and 38 (29–47) per cent in 2030
+  + 2010: 13 (7–19) per cent in 2025 and 16 (8–23) per cent in 2030
+  + Slow down in growth: from 24% in 1990-2010 to 16 (8-23) per cent in 2010-2030
++ Global average per capita emissions:
+  + 2025: 6.8 (6.4 to 7.2)t CO2 eq/capita 
+  + 2030: 6.7 (6.3 to 7.2) t CO2 eq/capita
+
+| ref year | 2025  | 2030 |
+|----------|-------|------|
+| 1990     | -8%   | -10% |
+| 2000     | +2%   | +0%  |
+| 2010     | -4%   | -5%  |
+
+
++ Estimated reduction in aggregate global emission level compared to pre-INDC:
+  + 2025: 2.8 (0.0 to 6.0) Gt CO2 eq
+  + 2030: 3.3 (0.3 to 8.2) Gt CO2 eq
+
+To sum up:
+### "much greater emission reduction efforts than those associated with the INDCs will be required in the period after 2025 and 2030 to hold the temperature rise below 2 °C above pre-industrial levels"
+
+## Methods
