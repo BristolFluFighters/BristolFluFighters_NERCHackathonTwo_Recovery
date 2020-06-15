@@ -8,13 +8,15 @@ are and how they can be reduced to reasonable metrics.
 
 ## Sources
 
-[Aggregate effect of the intended nationally determined contributions: an update](https://unfccc.int/resource/docs/2016/cop22/eng/02.pdf)
-[Synthesis report on the aggregate effect of the intended nationally determined contributions](https://unfccc.int/resource/docs/2015/cop21/eng/07.pdf)
++ [Aggregate effect of the intended nationally determined contributions: an update](https://unfccc.int/resource/docs/2016/cop22/eng/02.pdf)
++ [Synthesis report on the aggregate effect of the intended nationally determined contributions](https://unfccc.int/resource/docs/2015/cop21/eng/07.pdf)
++ [Technical Annex - Aggregate effect of the intended nationally determined contributions: an update](https://unfccc.int/files/focus/indc_portal/application/pdf/technical_annex_-_synthesis_report.pdf)
 
 ### Other
 
-[AR5](https://ar5-syr.ipcc.ch/ipcc/ipcc/resources/pdf/IPCC_SynthesisReport.pdf)
-
++ [AR5](https://ar5-syr.ipcc.ch/ipcc/ipcc/resources/pdf/IPCC_SynthesisReport.pdf)
++ [IPCC AR5 scenario database](https://tntcat.iiasa.ac.at/AR5DB/dsd?Action=htmlpage&page=about) 
+[*Seems interesting could be a good source of data*]
 
 ## Acronyms
 
@@ -28,10 +30,12 @@ are and how they can be reduced to reasonable metrics.
 + LULUCF: land use, land-use change and forestry
 + AR4 : Fourth Assessment Report of the Intergovernmental Panel on Climate
 Change
++ IPCC: Intergovernmental Panel on Climate Change
 
 ## Exclusions from this report
 
-+ [Air traffic](http://www.imo.org/en/OurWork/Environment/PollutionPrevention/AirPollution/Pages/Greenhouse-Gas-Studies-2014.aspx)
++ [Air traffic](http://www.icao.int/Meetings/a38/Documents/WP/wp430_en.pdf) ; 
+[](http://www.icao.int/Meetings/a38/Documents/WP/wp026_en.pdf)
 + [MAritime transport](http://www.imo.org/en/OurWork/Environment/PollutionPrevention/AirPollution/Pages/Greenhouse-Gas-Studies-2014.aspx)
 
 
@@ -163,3 +167,18 @@ To sum up:
 ### "much greater emission reduction efforts than those associated with the INDCs will be required in the period after 2025 and 2030 to hold the temperature rise below 2 °C above pre-industrial levels"
 
 ## Methods
+
+### Remarks
+
++ INDCs cover 88% of global emissions.
++ Aggregate results, no national/regional breakdown.
++ "The secretariat assumed that Parties will achieve the level of emissions implied in their INDCs."
+
+### Details
+
++ refer to paragraphs 97-102. Broadly those are fairly "common-sense", substraction, linear extrapolation, linear interpolation.
++ Use of "complementary data sets"
+  + Note *possible inconsistency between GWPs in AR4 and AR5*
+  + source of gas-by-gas data: AR5  historical emission database
+
+![Gases covered by targets](img/paris-agreements-gases_covered.png)
