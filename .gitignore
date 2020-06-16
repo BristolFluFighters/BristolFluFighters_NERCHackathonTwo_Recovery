@@ -2,6 +2,7 @@
 
 data/raw/*
 !data/raw/.gitkeep
+!data/raw/uk_energy_trends.csv
 
 #Latex build files
 *.out
