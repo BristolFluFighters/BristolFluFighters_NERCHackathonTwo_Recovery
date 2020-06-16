@@ -2,3 +2,16 @@
 
 data/raw/*
 !data/raw/.gitkeep
+
+#Latex build files
+*.out
+
+*.gz
+
+*.log
+
+*.blg
+
+*.bbl
+
+*.aux
