@@ -2,3 +2,19 @@
 
 data/raw/*
 !data/raw/.gitkeep
+
+*/.ipynb_checkpoints/*
+*-checkpoint.ipynb
+
+#Latex build files
+*.out
+
+*.gz
+
+*.log
+
+*.blg
+
+*.bbl
+
+*.aux
