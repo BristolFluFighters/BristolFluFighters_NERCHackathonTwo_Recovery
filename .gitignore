@@ -5,7 +5,7 @@ data/raw/*
 
 */.ipynb_checkpoints/*
 *-checkpoint.ipynb
-
+*/__pycache__/*
 #Latex build files
 *.out
 
