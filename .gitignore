@@ -3,6 +3,9 @@
 data/raw/*
 !data/raw/.gitkeep
 
+*/.ipynb_checkpoints/*
+*-checkpoint.ipynb
+
 #Latex build files
 *.out
 
