@@ -1,0 +1,55 @@
+Source,Property,Value
+historical_emissions_cait,Published Title (If not English),N/A
+historical_emissions_cait,Published Language,English
+historical_emissions_cait,Citation,"CAIT Climate Data Explorer. 2019. Country Greenhouse Gas Emissions. Washington, DC: World Resources Institute. Available online at: http://cait.wri.org"
+historical_emissions_cait,Link to License or Terms of Service,https://creativecommons.org/licenses/by/4.0/
+historical_emissions_cait,Summary of License,Creative Commons Attribution-NonCommercial 4.0 International license
+historical_emissions_cait,Frequency of Updates: annual; every x years/months/days; no updates planned,Annual
+historical_emissions_cait,Date of Content: List all years; for multiple years (2001 - 2014),1990-2016
+historical_emissions_cait,Geographic Coverage: global; quasi-global; select regions/countries,Global
+historical_emissions_cait,Cautions: Known use limitations/cautions regarding: geographic/content coverage; source (inconsistency); methodology ,"CAIT data are derived from several sources. Any use of the Land-Use Change and Forestry or Agriculture indicator should be cited as FAO 2019, FAOSTAT Emissions Database. Any use of CO2 emissions from fuel combustion data should be cited as CO2 Emissions from Fuel Combustion, OECD/IEA, 2018. As of March 2020, emissions from European Union (27) for all years no longer includes emissions from United Kingdom on Climate Watch."
+historical_emissions_cait,"Description: 
+Recap data name, source organization
+Objectives/ data type/ Methodology","As of December 2019, CAIT Historical Emission data contains sector-level greenhouse gas (GHG) emissions data for 185 countries and the European Union (EU) for the period 1990-2016, including emissions of the six major GHGs from most major sources and sinks. See http://cait.wri.org/docs/CAIT2.0_CountryGHG_Methods.pdf for details regarding data source and methodology."
+historical_emissions_cait,"Function/Summary: Tagline description of what data says 
+(150 character limit)",Historical country-level and sectoral GHG emission data (1990-2016)
+historical_emissions_cait,Learn More Link,http://cait.wri.org/historical/
+historical_emissions_cait,Source Organization,World Resources Institute
+historical_emissions_cait,Technical Title,CAIT Country Greenhouse Gas Emissions Data (1990-2016)
+historical_emissions_cait,Title (75 character limit),CAIT Historical Emissions
+historical_emissions_pik,Published Title (If not English),N/A
+historical_emissions_pik,Published Language,English
+historical_emissions_pik,Citation,"Gütschow, J.; Jeffery, L.; Gieseke, R.; Günther, A. (2019): The PRIMAP-hist national historical emissions time series v2.1 (1850-2017). GFZ Data Services. <https://doi.org/10.5880/pik.2019.018>."
+historical_emissions_pik,Link to License or Terms of Service,https://creativecommons.org/licenses/by/4.0/
+historical_emissions_pik,Summary of License,Creative Commons Attribution-NonCommercial 4.0 International license
+historical_emissions_pik,Frequency of Updates: annual; every x years/months/days; no updates planned,Annual
+historical_emissions_pik,Date of Content: List all years; for multiple years (2001 - 2014),1850-2017
+historical_emissions_pik,Geographic Coverage: global; quasi-global; select regions/countries,Global
+historical_emissions_pik,Cautions: Known use limitations/cautions regarding: geographic/content coverage; source (inconsistency); methodology ,"When using this dataset or one of its updates, please also cite the data description article (Gutschow et al., 2016, http://doi.org/10.5194/essd-8-571-2016) to which this data are supplement to. Please consider also citing the relevant original sources. As of update in March 2020, emissions from European Union (27) on Climate Watch are calculated by deducting United Kingdom's emissions from European Union (28) emissions reported in original PIK data for all years."
+historical_emissions_pik,"Description: 
+Recap data name, source organization
+Objectives/ data type/ Methodology","The PRIMAP-hist dataset combines several published datasets to create a comprehensive set of greenhouse gas emission pathways for every country and Kyoto gas covering the years 1850 to 2017, and all UNFCCC (United Nations Framework Convention on Climate Change) member states, as well as most non-UNFCCC territories. The scenario in which country reported data (CRF, BUR, UNFCCC) is prioritized over third party data (CDIAC, FAO, Andrew, EDGAR, BP) is used on Climate Watch. The data resolves the main IPCC (Intergovernmental Panel on Climate Change) 2006 categories. Subsector data for Energy, Industrial Processes, Agriculture and Waste is available for CO2, CH4, and N2O. Due to data availability and methodological issues, version 2.1 of the PRIMAP-hist dataset does not include emissions from land use, land use change, and forestry (LULUCF)."
+historical_emissions_pik,"Function/Summary: Tagline description of what data says 
+(150 character limit)",Historical country-level and sectoral GHG emission data (1850-2017)
+historical_emissions_pik,Learn More Link,http://dataservices.gfz-potsdam.de/pik/showshort.php?id=escidoc:4736895
+historical_emissions_pik,Source Organization,Postdam Institute For Climate Impact Research
+historical_emissions_pik,Technical Title,The PRIMAP-hist national historical emissions time series (1850-2017)
+historical_emissions_pik,Title (75 character limit),PIK-PRIMAP historical emissions
+historical_emissions_unfccc,Published Title (If not English),N/A
+historical_emissions_unfccc,Published Language,English
+historical_emissions_unfccc,Citation,UNFCCC. 2019. Greenhouse Gas Inventory Data - Detailed data by Party. Accessed October 5. http://di.unfccc.int/detailed_data_by_party.
+historical_emissions_unfccc,Link to License or Terms of Service,http://unfccc.int/home/items/2783.php
+historical_emissions_unfccc,Summary of License,"Public domain, may be freely downloaded, copied and printed provided no change to the content is introduced, and the source is acknowledged."
+historical_emissions_unfccc,Frequency of Updates: annual; every x years/months/days; no updates planned,Bi-annually
+historical_emissions_unfccc,Date of Content: List all years; for multiple years (2001 - 2014),1990-2016
+historical_emissions_unfccc,Geographic Coverage: global; quasi-global; select regions/countries,Global
+historical_emissions_unfccc,Cautions: Known use limitations/cautions regarding: geographic/content coverage; source (inconsistency); methodology ,"Note 1: The reporting and review requirements for GHG inventories are different for Annex I and non-Annex I Parties. The definition format of data for emissions/removals from the forestry sector is different for Annex I and non-Annex I Parties. Note 3: Some non-Annex I Parties submitted their GHG inventory data using the format of the 2006 IPCC Guidelines in reporting GHG emissions/removals. For this reason, these data could not be included in the data interface. However, the data are available in the national communications (Antigua and Barbuda, Armenia, Ghana, Jamaica, Kiribati, Mauritania, Namibia, Samoa, Suriname and Swaziland) and biennial update reports (Andorra, Armenia, Chile, Colombia, Costa Rica, Indonesia, The Former Yugoslav Republic of Macedonia, Mauritania, Montenegro, Namibia, Serbia, South Africa and Tunisia). Note 5: Data displayed on the data interface are ""as received"" from Parties. The publication of Party submissions on this website does not imply the expression of any opinion whatsoever on the part of the UNFCCC or the Secretariat of the United Nations concerning the legal status of any country, territory, city or area or of its authorities, or concerning the delimitation of its frontiers or boundaries as may be referred to in any of the submissions. As of March 2020, emissions from European Union (27) on Climate Watch are calculated by deducting emissions from United Kingdom from European Union (28) reported emissions in original UNFCCC data."
+historical_emissions_unfccc,"Description: 
+Recap data name, source organization
+Objectives/ data type/ Methodology",The GHG inventory data from UNFCCC are provided in the annual GHG inventory submissions by Annex I Parties and in the national communications under the Convention by non-Annex I Parties.
+historical_emissions_unfccc,"Function/Summary: Tagline description of what data says 
+(150 character limit)",Greenhouse Gas Inventory Data - Detailed data by Party
+historical_emissions_unfccc,Learn More Link,http://di.unfccc.int/detailed_data_by_party
+historical_emissions_unfccc,Source Organization,United Nations Framework Convention on Climate Change (UNFCCC)
+historical_emissions_unfccc,Technical Title,UNFCCC GHG data
+historical_emissions_unfccc,Title (75 character limit),UNFCCC historical emissions
