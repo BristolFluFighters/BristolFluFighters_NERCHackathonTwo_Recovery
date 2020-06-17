@@ -18,3 +18,4 @@ data/raw/*
 *.bbl
 
 *.aux
+data/raw/uk_energy_trends.csv
