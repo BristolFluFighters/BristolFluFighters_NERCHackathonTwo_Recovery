@@ -131,8 +131,17 @@ def read_mobility_citymapper(file_in, dir_in=default_data_dir):
     df, col = read_multi_indexed_csv(
         file_in, 1, dir_in=default_data_dir
     )
-    df.melt()
-    return df.set_index('Date', drop=False), col
+    id_vars = df.columns[:1]
+    date_vars = df.columns[1:]
+    df = df.melt(
+        id_vars=id_vars, value_vars=date_vars,
+        var_name="city", value_name='citymapper_mobility_index'
+    )
+    df.set_index(
+        pd.MultiIndex.from_frame(df[["city", "Date"]]), inplace=True
+    )
+    col = df.columns[2:]
+    return df, col
 
 # # %% [markdown]
 # ### load uk energy
