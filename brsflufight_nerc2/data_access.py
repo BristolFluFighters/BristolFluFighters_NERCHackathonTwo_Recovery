@@ -16,6 +16,105 @@ default_data_dir = "data/processed"
 
 data_files = os.listdir(default_data_dir)
 
+def shortest_country_match(df, column, country):
+    possible_finds = find_matching_geo_id(df, find_str=country, search_col=column)
+    len_current = 10000000000
+
+    current_find = ""
+    for find in possible_finds:
+        if len(find) < len_current:
+            len_current = len(find)
+            current_find = find
+    
+    return current_find
+
+class DataSet(object):
+    default_date_column_names = ["date", "Date", "timestamp"]
+    default_country_column_names = ["unique_geo_id", "Country", "city"]
+
+    def __init__(
+        self,
+        df:pd.DataFrame,
+        data_columns:list,
+        data_set_name="",
+        date_column_name=None,
+        country_column_name=None,
+        country_column_fun=None,
+        country_fun=shortest_country_match,
+    ):
+        self.df = df
+        self.data_columns = data_columns
+        self.date_column_name = date_column_name
+        self.country_column_name = country_column_name
+        self.country_column_fun = country_column_fun
+        self.country_fun = country_fun
+
+        # Input validation
+        self._guess_country_column()
+        self._guess_date_column()
+
+        self.df.set_index(
+            pd.MultiIndex.from_frame(
+                self.df[[self.country_column_name, self.date_column_name]]
+            ), inplace=True
+        )
+        self.df.sort_index(inplace=True)
+        self.country_cache = {}
+
+    def _guess_date_column(self):
+        if self.date_column_name is None:
+            for date_col in DataSet.default_date_column_names:
+                if date_col in self.df.columns:
+                    self.date_column_name = date_col
+        else:
+            # if the specified date_column does not exist in df
+            # remove it
+            if self.date_column_name not in self.df.columns:
+                self.date_column_name = None
+        
+        if self.date_column_name is None:
+            raise ValueError("Invalid `date_column_name` or dataframe, cannot find date")
+
+    def _guess_country_column(self):
+        if self.country_column_name is None:
+            for geo_col in DataSet.default_country_column_names:
+                if geo_col in self.df.columns:
+                    self.country_column_name = geo_col
+        else:
+            # if the specified country_column does not exist in df
+            # remove it
+            if self.country_column_name not in self.df.columns:
+                self.country_column_name = None
+        
+        if self.country_column_name is None:
+            raise ValueError("Invalid `country_column_name` or dataframe, cannot find geo")
+
+    def remove_from_cache(self, country):
+        self.country_cache.pop(country)
+
+    def clear_cache(self):
+        self.country_cache = {}
+
+    def get_country_string(self, country:str):
+        if country not in self.country_cache:
+            best_guess = self.country_fun(
+                self.df,
+                self.country_column_name,
+                country
+            )
+            if best_guess:
+                self.country_cache[country] = best_guess
+            else:
+                raise ValueError(
+                    f'"{country}" could not be found by '
+                    +f'function `{self.country_fun.__name__}`')
+        return self.country_cache[country]
+
+    def get_country(self, country:str):
+        return self.df.loc[self.get_country_string(country)]
+
+    def get_country_data(self, country:str):
+        return self.df.loc[self.get_country_string(country), self.data_columns]
 
 # # %% [markdown]
 # ## Define import processes
@@ -154,6 +253,7 @@ def read_uk_energy(file_in, dir_in=default_data_dir):
     df, col = read_multi_indexed_csv(
         file_in, 1, dir_in=default_data_dir
     )
+    df["Country"] = "United Kingdom"
     return df.set_index('timestamp', drop=False), col
 
 # # %% [markdown]
