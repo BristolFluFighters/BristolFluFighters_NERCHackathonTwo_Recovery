@@ -1,29 +1,29 @@
-# To add a new cell, type '# %%'
-# To add a new markdown cell, type '# %% [markdown]'
-# %% [markdown]
+# To add a new cell, type '# # %%'
+# To add a new markdown cell, type '# # %% [markdown]'
+# # %% [markdown]
 # # Import pre-processed datasets
 # 
 # This notebook imports the preprocessed datasets which come with this repository.
 # 
 
-# %%
+# # %%
 import pandas as pd
 import os
 
 
-# %%
+# # %%
 default_data_dir = "data/processed"
 
 data_files = os.listdir(default_data_dir)
 
 
-# %% [markdown]
+# # %% [markdown]
 # ## Define import processes
 # 
 # The idea is that all data sets are read and will all be indexed by a DateTime series and possibly other indices if helpful.
 # 
 
-# %%
+# # %%
 def read_multi_indexed_csv(file_in, first_data_column, dir_in=default_data_dir):
     ''' Read in preprocessed historical GHG data.
 
@@ -51,6 +51,7 @@ def read_multi_indexed_csv(file_in, first_data_column, dir_in=default_data_dir):
             df[col] = pd.to_datetime(df[col])
     
     if index_cols:
+        # index cols are repeated in the datasets so appear with a .1
         df.drop([f"{c}.1" for c in index_cols], axis=1, inplace=True)
         df.set_index(
             pd.MultiIndex.from_frame(df[index_cols]), inplace=True
@@ -62,13 +63,13 @@ def read_multi_indexed_csv(file_in, first_data_column, dir_in=default_data_dir):
     data_fields = df.columns[first_data_column:]
     return (df, data_fields)
 
-# %% [markdown]
+# # %% [markdown]
 # ### historical green house gas emissions
 # 
 # 
 # define `read_historical_GHG`
 
-# %%
+# # %%
 def read_historical_GHG(file_in, dir_in=default_data_dir):
     ''' Read in preprocessed historical GHG data.
 
@@ -80,15 +81,38 @@ def read_historical_GHG(file_in, dir_in=default_data_dir):
         (DataFrame, list): The data of the file loaded in a dataframe
         and a list indicating which columns contain the data of interest
     '''
-    return read_multi_indexed_csv(file_in, 6, dir_in=default_data_dir)
+    data_pos = 6
+    data_set, data_cols = read_multi_indexed_csv(file_in, data_pos, dir_in=default_data_dir)
+    # deindex by gas as it is not general, instead different gases are gonna get different 
+    # columns
+    data_set = data_set.reorder_levels([1, 0, 2])
+    new_data_set = data_set.drop(labels=['max_year', 'GH_Gas', *data_cols], axis='columns')
+    new_data_set.drop_duplicates(ignore_index=True, inplace=True)
+    new_data_set.set_index(
+        pd.MultiIndex.from_frame(new_data_set[["Country", "date"]]), inplace=True
+    )
+    
+    for i, gas in enumerate(data_set.GH_Gas.unique()):
+        
+        temp_set = data_set.loc[gas, data_cols]
+        temp_set.rename({c:f"{c} ({gas})" for c in data_cols}, axis='columns', inplace=True)
 
-# %% [markdown]
+        new_data_set = new_data_set.join(temp_set)
+
+    new_data_set.dropna(axis='columns',how='all', inplace=True)
+    new_data_set.sort_index(inplace=True)
+    data_cols = new_data_set.columns[data_pos-2:]
+    return new_data_set, data_cols
+    
+    
+
+# # %% [markdown]
 # ### Read mobility data
 # 
 # 
 # define `read_mobility_file`
 
-# %%
+# # %%
 def read_mobility_google(file_in, dir_in=default_data_dir):
     return read_multi_indexed_csv(
         file_in, 
@@ -107,27 +131,28 @@ def read_mobility_citymapper(file_in, dir_in=default_data_dir):
     df, col = read_multi_indexed_csv(
         file_in, 1, dir_in=default_data_dir
     )
+    df.melt()
     return df.set_index('Date', drop=False), col
 
-# %% [markdown]
+# # %% [markdown]
 # ### load uk energy
 # 
 # 
 # define `read_uk_energy`
 
-# %%
+# # %%
 def read_uk_energy(file_in, dir_in=default_data_dir):
     df, col = read_multi_indexed_csv(
         file_in, 1, dir_in=default_data_dir
     )
     return df.set_index('timestamp', drop=False), col
 
-# %% [markdown]
+# # %% [markdown]
 # ## Read in the data
 # 
 # Now we map each file to the appropriate function
 
-# %%
+# # %%
 # Map files to a function that will read it properly
 default_file_read_functions = {
     'historical_GHG_Sectors_GCP.csv': read_historical_GHG,
@@ -139,10 +164,10 @@ default_file_read_functions = {
     'uk_energy_daily.csv': read_uk_energy,
 }
 
-# %% [markdown]
+# # %% [markdown]
 # And with a single loop all the different data sets are loaded.
 
-# %%
+# # %%
 
 def load_data_files(data_files=None, file_read_functions=None):
     """Processes a set of data files and 
@@ -168,10 +193,10 @@ def load_data_files(data_files=None, file_read_functions=None):
         
     return data_sets, data_columns
 
-# %% [markdown]
+# # %% [markdown]
 # ### Summary of available data
 
-# %%
+# # %%
 def summarise_data(data_sets, data_columns):
     for data in data_sets:
         print("=========================================")
@@ -183,7 +208,7 @@ def summarise_data(data_sets, data_columns):
         print("--------------------------------------")
         print()
 
-# %%
+# # %%
 
 def find_matching_geo_id(
     df, 
