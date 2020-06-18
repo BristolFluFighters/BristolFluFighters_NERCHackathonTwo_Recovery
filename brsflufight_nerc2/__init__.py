@@ -5,4 +5,11 @@ from .data_access import (
     DataSet,
 )
 
+from .data_plot import (
+    plot_yearly_data,
+    plot_historical_GHG,
+    plot_mobility,
+)
+
 from . import data_access
+from . import data_plot

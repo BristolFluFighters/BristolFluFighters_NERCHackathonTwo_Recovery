@@ -29,14 +29,22 @@ def shortest_country_match(df, column, country):
     return current_find
 
 class DataSet(object):
-    default_date_column_names = ["date", "Date", "timestamp"]
-    default_country_column_names = ["unique_geo_id", "Country", "city"]
+    default_date_column_names = [
+        "date", "Date", "timestamp"
+    ]
+    default_country_column_names = [
+        "unique_geo_id", "Country", "city"
+    ]
+    default_data_types = [
+        "historical_GHG", "mobility", "energy_daily"
+    ]
 
     def __init__(
         self,
         df:pd.DataFrame,
         data_columns:list,
-        data_set_name="",
+        dataset_name="",
+        data_type = None,
         date_column_name=None,
         country_column_name=None,
         country_column_fun=None,
@@ -48,10 +56,13 @@ class DataSet(object):
         self.country_column_name = country_column_name
         self.country_column_fun = country_column_fun
         self.country_fun = country_fun
+        self.dataset_name = dataset_name
+        self.data_type = data_type
 
         # Input validation
         self._guess_country_column()
         self._guess_date_column()
+        self._guess_data_type()
 
         self.df.set_index(
             pd.MultiIndex.from_frame(
@@ -89,6 +100,21 @@ class DataSet(object):
         if self.country_column_name is None:
             raise ValueError("Invalid `country_column_name` or dataframe, cannot find geo")
 
+    def _guess_data_type(self):
+        if self.data_type is None:
+            for geo_col in DataSet.default_data_types:
+                if geo_col in self.dataset_name:
+                    self.data_type = geo_col
+        else:
+            # if the specified data_type does not exist in df
+            # remove it
+            if self.data_type not in self.df.columns:
+                self.dataset_name = None
+        if not self.dataset_name:
+            print("WARNING: Please define dataset_name to use class DataSet")
+        elif self.data_type is None:
+            raise ValueError("Unrecognised `data_type` or dataset_name")
+
     def remove_from_cache(self, country):
         self.country_cache.pop(country)
 
@@ -115,6 +141,16 @@ class DataSet(object):
 
     def get_country_data(self, country:str):
         return self.df.loc[self.get_country_string(country), self.data_columns]
+
+    def summarise(self):
+        print("=========================================")
+        print(self.dataset_name)
+        print("--------------------------------------")
+        print(self.data_columns)
+        print("--------------------------------------")
+        print(self.df.info())
+        print("--------------------------------------")
+        print()
 
 # # %% [markdown]
 # ## Define import processes
@@ -288,34 +324,26 @@ def load_data_files(data_files=None, file_read_functions=None):
         file_read_functions = default_file_read_functions
 
     data_sets = {}
-    data_columns = {}
     for data_file in data_files:
         data_name, _ = os.path.splitext(data_file)
         try:
-            data_sets[data_name], data_columns[data_name] = \
-                file_read_functions[data_file](data_file)
+            data, col = file_read_functions[data_file](data_file)
+            data_sets[data_name] = DataSet(data, col, data_name)
         except KeyError as eid:
             raise KeyError(
                 f'key "{data_file}" not found in dictionary `file_read_functions`.\n'
                 + 'It '
             )            
         
-    return data_sets, data_columns
+    return data_sets
 
 # # %% [markdown]
 # ### Summary of available data
 
 # # %%
-def summarise_data(data_sets, data_columns):
+def summarise_data(data_sets):
     for data in data_sets:
-        print("=========================================")
-        print(data)
-        print("--------------------------------------")
-        print(data_columns[data])
-        print("--------------------------------------")
-        print(data_sets[data].info())
-        print("--------------------------------------")
-        print()
+        data_sets[data].summarise()
 
 # # %%
 
