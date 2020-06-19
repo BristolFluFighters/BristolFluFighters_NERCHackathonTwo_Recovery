@@ -2,16 +2,27 @@ from sklearn.linear_model import LinearRegression
 import pandas as pd
 import math
 from .data_access import DataSet
+import numpy as np
+
+def define_year(df_mask, year, fun):
+    if year is None:
+        year = fun(df_mask.index)
+    
+    if isinstance(year, type(str())):
+        year = pd.to_datetime(year, format="%Y")
+
+    return year
 
 def mask_dateindex(
     df, df_mask, 
     min_year=None,
     max_year=None,
 ):
-    # TODO Enable manual specification of a minimum year
+    min_year = define_year(df_mask, min_year, np.min)
+    max_year = define_year(df_mask, max_year, np.max)
+
     return (
-        (df.index >= df_mask.index.min()) 
-        & (df.index <= df_mask.index.max()) 
+        (df.index >= min_year) & (df.index <= max_year) 
     )
 
 def linear_fit(data, fit_df=None):
