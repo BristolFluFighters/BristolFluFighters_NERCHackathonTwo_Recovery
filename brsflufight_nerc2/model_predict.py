@@ -112,3 +112,45 @@ def apply_prediction(fit_df, x_values, x_col_map=None):
     )
     df_pred.drop("predictor",inplace=True, axis=1)
     return df_pred
+
+def display_correlations(correlation_dict, display_fun=print):
+    for dset in correlation_dict:
+        print("=====================================================================")
+        print(f"Pearson correlation coefficients in dataset '{dset}'")
+        min_d = correlation_dict[dset]['data'].index.min()
+        max_d = correlation_dict[dset]['data'].index.max()
+        print(f"\t on data from {min_d.year} to {max_d.year} (inclusive)")
+        print("_________________________________________________________")
+        display_fun(
+            correlation_dict[dset]['correlation']
+            .style.background_gradient().set_precision(3)
+        )
+        print("=====================================================================")
+        print("")
+
+
+def predict_correlation_model(
+    independant_variable,
+    correlation_dict,
+):
+    col_with_corona = [c for c in independant_variable if "_with_corona" in c][0]
+    col_without_corona = [c for c in independant_variable if "_without_corona" in c][0]
+    cols_of_interest = [col_with_corona, col_without_corona]
+    independant_variable.drop(
+        [c for c in independant_variable if c not in cols_of_interest],
+        axis='columns', inplace=True
+    )
+
+    pred = apply_prediction(
+        correlation_dict['fit'],
+        independant_variable,
+        {c: 'demand' for c in independant_variable}  # Use only demand
+    )
+
+    difference = pred.loc[col_with_corona]-pred.loc[col_without_corona]
+    ratio = (difference)/pred.loc[col_without_corona]
+
+    difference["quantity"] = "absolute difference"
+    ratio["quantity"] = "relative difference"
+
+    return pred, difference.append(ratio)

@@ -9,7 +9,7 @@
 # # %%
 import pandas as pd
 import os
-
+import numpy as np
 
 # # %%
 default_data_dir = "data/processed"
@@ -393,3 +393,14 @@ def find_matching_geo_id(
             if find_str in name 
             if exclude_str not in name
     ]
+
+
+def summarise_to_freq(df, freq='1Y', fun_test_data=None):
+    grouped = df.groupby(pd.Grouper(freq=freq))
+    if fun_test_data is None:
+        years_with_enough_data = np.full(len(grouped.count()), True, dtype=bool)
+    else:
+        years_with_enough_data = fun_test_data(grouped)
+    new_df = grouped.mean()[years_with_enough_data]
+    return new_df.set_index(pd.to_datetime(new_df.index.year,format="%Y"))
+    

@@ -4,6 +4,7 @@ from .data_access import (
     find_matching_geo_id,
     DataSet,
     DataGroup,
+    summarise_to_freq,
 )
 
 from .data_plot import (
@@ -15,6 +16,8 @@ from .data_plot import (
 from .model_predict import (
     correlate,
     apply_prediction,
+    display_correlations,
+    predict_correlation_model,
 )
 
 from . import data_access
