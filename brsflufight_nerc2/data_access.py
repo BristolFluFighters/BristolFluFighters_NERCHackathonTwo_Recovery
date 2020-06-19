@@ -314,13 +314,14 @@ def read_uk_prediction(file_in, dir_in=default_data_dir):
         file_in, 1, dir_in=default_data_dir
     )
     str_app = file_in[file_in.index("_")+1:file_in.rindex("_")]
+    new_cols = [f"{str_app}_{c}" for c in col]
     df.rename(
-        {c:f"{str_app}_{c}" for c in col},
+        {c:c_new for c, c_new in zip(col, new_cols)},
         inplace=True,
         axis='columns',
     )
     df["Country"] = "United Kingdom"
-    return df.set_index('timestamp', drop=False), col
+    return df.set_index('timestamp', drop=False), new_cols
 
 # # %% [markdown]
 # ## Read in the data
