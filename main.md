@@ -115,8 +115,8 @@ This visualisation of the energy demand clearly shows seasonality which must be 
 
 To understand the impact of Covid-19 induced changes in behaviour need to be quantified. To do this we need to calculate the difference between the values including the effects of the pandemic and the values if there had been no pandemic. To calculate the values without the influence or the pandemic, a model based on data from before the pandemic is used to predict what the values would have been if those trends had continued. A similar based that is based on data that includes the pandemic can be used to predict what the future values will be based on the annual historical variations and the changes in the value that have already been observed due to the pandemic. These models work because it is possible to split the original data into a long term trend, a repeatable annual variation and remaining residuals. Below is an example of the decomposed signal and the predictions/observations for energy demand in 2020 with and without the impact of the pandemic.
 
-![Decomposition of original signal](img/seasonal_decomposition_not_smoothed.png)
-![with-without comparison](img/with_without_comparison_not_smoothed_trend_add_seasonal_mul_damped.png)
+![Decomposition of original signal](data/img/seasonal_decomposition_not_smoothed.png)
+![with-without comparison](data/img/with_without_comparison_not_smoothed_trend_add_seasonal_mul_damped.png)
 
 The difference between the demand with and without the pandemic can be used to quantify the reduction in this metric across the year. For more detail on this model visit the [`energy_forecast` explanation](data/energy_forecast.md) and/or the [`energy_forecast` notebook](energy_forecast.ipynb) .
 
