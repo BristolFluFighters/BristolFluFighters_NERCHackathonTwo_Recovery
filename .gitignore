@@ -1,6 +1,7 @@
 # Specify filepatterns you want git to ignore.
 
 data/raw/*
+data/.ipynb_checkpoints
 !data/raw/.gitkeep
 
 */.ipynb_checkpoints/*
@@ -18,3 +19,4 @@ data/raw/*
 *.bbl
 
 *.aux
+data/raw/uk_energy_trends.csv
