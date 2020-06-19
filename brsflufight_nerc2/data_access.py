@@ -36,7 +36,7 @@ class DataSet(object):
         "unique_geo_id", "Country", "city"
     ]
     default_data_types = [
-        "historical_GHG", "mobility", "energy_daily"
+        "historical_GHG", "mobility", "energy_daily", "reduction"
     ]
 
     def __init__(
@@ -308,6 +308,20 @@ def read_uk_energy(file_in, dir_in=default_data_dir):
     df["Country"] = "United Kingdom"
     return df.set_index('timestamp', drop=False), col
 
+# # %%
+def read_uk_prediction(file_in, dir_in=default_data_dir):
+    df, col = read_multi_indexed_csv(
+        file_in, 1, dir_in=default_data_dir
+    )
+    str_app = file_in[file_in.index("_")+1:file_in.rindex("_")]
+    df.rename(
+        {c:f"{str_app}_{c}" for c in col},
+        inplace=True,
+        axis='columns',
+    )
+    df["Country"] = "United Kingdom"
+    return df.set_index('timestamp', drop=False), col
+
 # # %% [markdown]
 # ## Read in the data
 # 
@@ -323,6 +337,7 @@ default_file_read_functions = {
     'mobility_citymapper.csv': read_mobility_citymapper,
     'mobility_google.csv': read_mobility_google,
     'uk_energy_daily.csv': read_uk_energy,
+    'uk_energy_demand_reduction.csv': read_uk_prediction,
 }
 
 # # %% [markdown]
