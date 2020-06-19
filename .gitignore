@@ -19,4 +19,8 @@ data/.ipynb_checkpoints
 *.bbl
 
 *.aux
+
+data/__pycache__/
+
 data/raw/uk_energy_trends.csv
+
