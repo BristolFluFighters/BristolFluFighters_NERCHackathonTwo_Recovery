@@ -12,5 +12,11 @@ from .data_plot import (
     plot_mobility,
 )
 
+from .model_predict import (
+    correlate,
+    apply_prediction,
+)
+
 from . import data_access
 from . import data_plot
+from . import model_predict

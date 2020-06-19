@@ -1,0 +1,103 @@
+from sklearn.linear_model import LinearRegression
+import pandas as pd
+import math
+from .data_access import DataSet
+
+def mask_dateindex(
+    df, df_mask, 
+    min_year=None,
+    max_year=None,
+):
+    # TODO Enable manual specification of a minimum year
+    return (
+        (df.index >= df_mask.index.min()) 
+        & (df.index <= df_mask.index.max()) 
+    )
+
+def linear_fit(data, fit_df=None):
+    if fit_df is None:
+        fit_df = pd.DataFrame(columns=data.columns, index=data.columns)
+
+    for col_pred in fit_df:
+        for col_known in fit_df[col_pred].index:
+            try:
+                fit_df.loc[col_known, col_pred] = LinearRegression().fit(
+                    data[col_known].values.reshape(-1, 1),
+                    data[col_pred].values.reshape(-1, 1)
+                )
+            except ValueError as eid:
+                print(f"Linear regression failed for: '{col_pred}' fit to  '{col_known}':")
+                print(f"  Message: {eid}")
+    return fit_df
+
+def correlate(
+    selector:dict,
+    data_sets:[dict, DataSet],
+    main_compare:str,
+    min_year=None,
+    max_year=None,
+):
+    """ Correlate specific columns of datasets together
+
+    This also returns a linear fit between them.
+    """
+    data_sets_corr = [c for c in selector if c != main_compare]
+    corrs = []
+    merged_data = []
+    for dataset in data_sets_corr:
+        ref_mask = mask_dateindex(data_sets[main_compare], data_sets[dataset])
+        targ_mask = mask_dateindex(data_sets[dataset], data_sets[main_compare])
+        merged_data.append(
+            pd.merge_asof(
+                data_sets[main_compare].loc[ref_mask, selector[main_compare]], 
+                data_sets[dataset].loc[targ_mask, selector[dataset]], 
+                left_index=True, right_index=True, direction='nearest'
+            )
+        )
+        corrs.append(
+            merged_data[-1].corr(method='spearman')
+            .loc[selector[main_compare], selector[dataset]]
+        )
+
+    lin_fit = []
+    for corr, data in zip(corrs, merged_data):
+        lin_fit.append(
+            linear_fit(data, fit_df=pd.DataFrame().reindex_like(corr))
+        )
+
+    corr_dict = {}
+    for dset, corr, data, fit in zip(data_sets_corr, corrs, merged_data, lin_fit):
+        corr_dict[dset] = {
+            'correlation': corr,
+            'data': data,
+            'fit': fit,
+        }
+
+    return corr_dict
+
+def apply_prediction(fit_df, x_values, x_col_map=None):
+    """ Returns a prediction for the columns of "fit_df" 
+
+    This function applies the model specified in fit_df to the dataframe 
+    """
+    if x_col_map is None:
+        x_col_map = {c:c for c in x_values}
+
+    df_pred = pd.DataFrame(columns=["predictor", "predictor_value", *fit_df.columns])
+    for col_pred in x_values:
+        df_temp = pd.DataFrame(columns=fit_df.columns, index=x_values.index)
+        df_temp["predictor"] = col_pred
+        df_temp["predictor_value"] = x_values[col_pred]
+        for y_col in fit_df.columns:
+            df_temp[y_col] = fit_df.loc[x_col_map[col_pred], y_col].predict(
+                x_values[col_pred].values.reshape(-1, 1)
+            )
+        df_pred = pd.concat([df_pred, df_temp])
+    df_pred.set_index(
+        pd.MultiIndex.from_arrays(
+            [df_pred["predictor"], df_pred.index],
+            names=('predictor', 'date')
+        ), inplace=True
+    )
+    df_pred.drop("predictor",inplace=True, axis=1)
+    return df_pred

@@ -346,9 +346,10 @@ def load_data_files(data_files=None, file_read_functions=None):
             data, col = file_read_functions[data_file](data_file)
             data_sets[data_name] = DataSet(data, col, data_name)
         except KeyError as eid:
-            raise KeyError(
-                f'key "{data_file}" not found in dictionary `file_read_functions`.\n'
-                + 'It '
+            print(
+                'WARNING:'
+                f' "{data_file}" not found in dictionary `file_read_functions`.\n'
+                + 'A loading function must be defined in `data_access.default_file_read_functions`.'
             )            
         
     return data_sets
