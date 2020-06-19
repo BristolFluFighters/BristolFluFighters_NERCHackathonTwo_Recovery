@@ -1,10 +1,10 @@
 ## Framework methodology with case study
 The framework is built on a Holt-Winter’s Seasonal Smoothing model which can be used to predict future values in a time series based on the decomposition of a historical values into three categories: an overall trend, seasonal variation and remaining residuals. Below is an example of the average energy demand [MW] in the UK since 2012 which is shown alongside the deconstruction of these values into components previously mentioned.
 
-![Decomposition of original signal](seasonal_decomposition_not_smoothed.png)
-![Decomposition of original signal](/img/seasonal_decomposition_not_smoothed.png)
+<!-- ![Decomposition of original signal](seasonal_decomposition_not_smoothed.png) -->
+<!-- ![Decomposition of original signal](/img/seasonal_decomposition_not_smoothed.png) -->
 ![Decomposition of original signal](img/seasonal_decomposition_not_smoothed.png)
-![Decomposition of original signal](./img/seasonal_decomposition_not_smoothed.png)
+<!-- ![Decomposition of original signal](./img/seasonal_decomposition_not_smoothed.png) -->
 
 It can be seen that the original values can successfully be decomposed into:
 - A long term trend which is gradually declining, likely due to increased emphasis on energy efficiency and energy use;
