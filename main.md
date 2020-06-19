@@ -45,10 +45,10 @@ This approach is advantageous as it will allow new datasets to be considered as 
 
 In order to address the challenges identified above, large amounts of varied data are required. Since the real time GHG emission data could not be procured the following proxies were gathered:
 
-1. Historical greenhouse gas emission data (from [climatewatchdata](climatewatchdata.org));
-2. Air quality indicators (from the [UK MET Office](https://metdatasa.blob.core.windows.net/covid19-response/index.html);
-3. Personal mobility information (from [Google](https://www.gstatic.com/covid19/mobility), [Apple](apple.com/covid19/mobility) and [CityMapper](https://cdn.citymapper.com/data/cmi));
-4. Electricity production and consumption (from [Gridwatch]());
+1. Historical greenhouse gas emission data (from [climatewatchdata](https://www.climatewatchdata.org));
+2. Air quality indicators (from the [UK MET Office](https://metdatasa.blob.core.windows.net/covid19-response/index.html));
+3. Personal mobility information (from [Google](https://www.gstatic.com/covid19/mobility), [Apple](https://www.apple.com/covid19/mobility) and [CityMapper](https://cdn.citymapper.com/data/cmi));
+4. Electricity production and consumption (from [Gridwatch](https://www.gritwatch.templar.co.uk));
 5. Employment data (from the [ONS](https://www.ons.gov.uk/employmentandlabourmarket/peopleinwork/employmentandemployeetypes/articles/furloughingofworkersacrossukbusinesses/23march2020to5april2020)).
 
 These datasets have widely varying spatio-temporal features:
