@@ -152,6 +152,22 @@ class DataSet(object):
         print("--------------------------------------")
         print()
 
+
+class DataGroup(dict):
+    def __init__(self, iterable):
+        super().__init__(iterable)
+    
+    def get_country(self, country):
+        d_uk = {}
+        for dset in self:
+            try:
+                d_uk[dset] = self[dset].get_country(country)
+                print(f"Success: {dset}")
+            except:
+                print(f"Failed: {country} not in {dset}")
+        return d_uk
+
+
 # # %% [markdown]
 # ## Define import processes
 # 
@@ -323,7 +339,7 @@ def load_data_files(data_files=None, file_read_functions=None):
     if file_read_functions is None:
         file_read_functions = default_file_read_functions
 
-    data_sets = {}
+    data_sets = DataGroup({})
     for data_file in data_files:
         data_name, _ = os.path.splitext(data_file)
         try:

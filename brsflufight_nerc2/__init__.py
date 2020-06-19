@@ -3,6 +3,7 @@ from .data_access import (
     summarise_data,
     find_matching_geo_id,
     DataSet,
+    DataGroup,
 )
 
 from .data_plot import (
