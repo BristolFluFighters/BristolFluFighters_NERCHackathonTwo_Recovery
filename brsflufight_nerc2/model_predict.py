@@ -100,9 +100,13 @@ def apply_prediction(fit_df, x_values, x_col_map=None):
         df_temp["predictor"] = col_pred
         df_temp["predictor_value"] = x_values[col_pred]
         for y_col in fit_df.columns:
-            df_temp[y_col] = fit_df.loc[x_col_map[col_pred], y_col].predict(
-                x_values[col_pred].values.reshape(-1, 1)
-            )
+            try:
+                df_temp[y_col] = fit_df.loc[x_col_map[col_pred], y_col].predict(
+                    x_values[col_pred].values.reshape(-1, 1)
+                )
+            except AttributeError as identifier:
+                df_temp[y_col] = np.nan
+
         df_pred = pd.concat([df_pred, df_temp])
     df_pred.set_index(
         pd.MultiIndex.from_arrays(
