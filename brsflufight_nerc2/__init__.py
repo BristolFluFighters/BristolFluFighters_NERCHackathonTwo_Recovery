@@ -19,6 +19,7 @@ from .model_predict import (
     apply_prediction,
     display_correlations,
     predict_correlation_model,
+    SeasonalModel,
 )
 
 from . import data_access
