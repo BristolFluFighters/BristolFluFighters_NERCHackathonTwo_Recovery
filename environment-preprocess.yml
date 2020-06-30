@@ -1,0 +1,16 @@
+name: bff-covhack2-datapreproc
+dependencies:
+  - python
+  - pandas
+  - numpy
+  - matplotlib
+  - statsmodels
+  - scikit-learn
+  - requests
+  - jupyter
+  - notebook
+  - scipy
+  - cartopy
+  - iris
+channels:
+  - conda-forge  # needed for iris
