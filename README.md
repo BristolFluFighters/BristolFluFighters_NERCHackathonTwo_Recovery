@@ -1,9 +1,11 @@
 # Covid_Hackathon_2
 
+![Second place badge](covid-19_H2_Winner_SecondPlace.png)
+
 Repository for managing the submission to COVID-19 Digital Sprint Hackathon 2 (June 15 09:00 to June 19 23:59)
 
 The submission for team BristolFluFighters can be found in [main.md](main.md) which presents a report into our solution
-to the Hackathon. 
+to the Hackathon.
 
 ## Useful links
 
