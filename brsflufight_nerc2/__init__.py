@@ -11,6 +11,7 @@ from .data_plot import (
     plot_yearly_data,
     plot_historical_GHG,
     plot_mobility,
+    plot_yearly_series,
 )
 
 from .model_predict import (
@@ -18,6 +19,7 @@ from .model_predict import (
     apply_prediction,
     display_correlations,
     predict_correlation_model,
+    SeasonalModel,
 )
 
 from . import data_access

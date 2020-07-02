@@ -6,6 +6,28 @@ import pandas as pd
 from .data_access import DataSet
 
 
+def plot_yearly_series(
+    series,
+    series_name='series',
+    norms = ['1D', '7D', '30D'],
+):
+    df = pd.DataFrame({series_name: series})
+    df["dayofyear"] = df.index.dayofyear
+    fig, axs = plt.subplots(1, len(norms))
+
+    fig.set_size_inches(5*len(norms) + 1 , 5)
+    fig.suptitle(f"{series_name}")
+    axs[0].set_ylabel('')
+
+    for norm in norms:
+        df[f"{series_name}_{norm}"] = df[series_name].rolling(norm).mean()
+    for year in ["2016", "2017", "2018", "2019", "2020"]:  # df.index.year.unique()
+        year = str(year)
+        for i, norm in enumerate(norms):
+            df[year].plot(x="dayofyear", y=f"{series_name}_{norm}", ax=axs[i], label=year)
+    for ax in axs:
+        ax.legend(ncol=3)
+
 def plot_yearly_data(
     data_sets,
     data_source,

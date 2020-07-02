@@ -1,4 +1,6 @@
 from sklearn.linear_model import LinearRegression
+from statsmodels.tsa.holtwinters import ExponentialSmoothing
+
 import pandas as pd
 import math
 from .data_access import DataSet
@@ -100,9 +102,13 @@ def apply_prediction(fit_df, x_values, x_col_map=None):
         df_temp["predictor"] = col_pred
         df_temp["predictor_value"] = x_values[col_pred]
         for y_col in fit_df.columns:
-            df_temp[y_col] = fit_df.loc[x_col_map[col_pred], y_col].predict(
-                x_values[col_pred].values.reshape(-1, 1)
-            )
+            try:
+                df_temp[y_col] = fit_df.loc[x_col_map[col_pred], y_col].predict(
+                    x_values[col_pred].values.reshape(-1, 1)
+                )
+            except AttributeError as identifier:
+                df_temp[y_col] = np.nan
+
         df_pred = pd.concat([df_pred, df_temp])
     df_pred.set_index(
         pd.MultiIndex.from_arrays(
@@ -154,3 +160,65 @@ def predict_correlation_model(
     ratio["quantity"] = "relative difference"
 
     return pred, difference.append(ratio)
+
+
+def create_holts_winter_model(
+    self,
+    timeseries,
+    model_trend='add',
+    model_seasonal='mul',
+    seas_freq_val=365,
+    seas_freq_unit='D',
+    model_damped=True,
+):
+    return ExponentialSmoothing(
+        timeseries, trend=model_trend, seasonal=model_seasonal,
+        seasonal_periods=seas_freq_val, freq=seas_freq_unit, 
+        damped=model_damped
+    ).fit()
+
+
+
+class SeasonalModel(object):
+    def __init__(
+        self,
+        df:pd.DataFrame, # with datetime index 
+        validation_period=['2018-01-01', '2019-12-31'],
+        corona_start='2020-01-01',
+        model_to='2020-12-31',
+        date_fmt='%Y-%m-%d'
+    ):
+        super().__init__()
+        self.df = df
+        self.date_fmt = date_fmt
+        self.model_to = model_to
+        self.corona_start = corona_start
+        self.validation_period = validation_period
+
+        self.set_validation_mask()
+        self.set_corona_mask()
+
+    def set_validation_mask(self):
+        self.validation_mask = self.get_period_mask(self.validation_period)
+
+    def set_corona_mask(self):
+        self.corona_mask = self.get_period_mask([self.corona_start, self.model_to])
+
+    def get_period_mask(self, period):
+        period = pd.to_datetime(period, format=self.date_fmt)
+        return (
+            (self.df.index >= period[0])
+            & (self.df.index <= period[1])
+        )
+
+
+    def test_model(self):
+        self.testing_model = create_holts_winter_model(self.training_set)
+
+    @property
+    def training_set(self):
+        return self.df.loc[~(self.validation_mask | self.corona_mask)]
+
+    @property
+    def validation_set(self):
+        return self.df.loc[self.validation_mask]

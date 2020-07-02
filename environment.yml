@@ -1,0 +1,13 @@
+# Environment file to run the models and correlation engine
+name: bff-covhack2
+dependencies:
+  - python
+  - pandas
+  - numpy
+  - matplotlib
+  - statsmodels
+  - scikit-learn
+  - requests
+  - jupyter
+  - notebook
+  - scipy
